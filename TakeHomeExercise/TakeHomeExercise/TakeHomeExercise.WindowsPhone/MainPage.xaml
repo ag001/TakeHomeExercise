@@ -8,7 +8,34 @@
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
+    <Page.BottomAppBar>
+        <CommandBar>
+            <AppBarButton Label="Flickr" Click="AppBarButton_Click">
+                <AppBarButton.Icon>
+                    <FontIcon Glyph="F"/>
+                </AppBarButton.Icon>
+            </AppBarButton>
+            <AppBarButton Label="500px" Click="AppBarButton_Click">
+                <AppBarButton.Icon>
+                    <FontIcon Glyph="Px"/>
+                </AppBarButton.Icon>
+            </AppBarButton>
+            <AppBarButton Label="Library" Click="AppBarButton_Click">
+                <AppBarButton.Icon>
+                    <FontIcon Glyph="L"/>
+                </AppBarButton.Icon>
+            </AppBarButton>
+        </CommandBar>
+    </Page.BottomAppBar>
     <Grid>
-
+        <GridView x:Name="ListViewControl" ItemsSource="{Binding Photos}" ItemTemplateSelector="{StaticResource photoItemTemplateSelector}">
+            <GridView.ItemTemplate>
+                <DataTemplate>
+                    <Border Margin="10">
+                        <Image MaxHeight="100" MaxWidth="100" Source="{Binding Converter={StaticResource photoConverter}}" Stretch="Fill"></Image>
+                    </Border>
+                </DataTemplate>
+            </GridView.ItemTemplate>
+        </GridView>
     </Grid>
 </Page>

@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TakeHomeExercise.Windows", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TakeHomeExercise.WindowsPhone", "TakeHomeExercise\TakeHomeExercise.WindowsPhone\TakeHomeExercise.WindowsPhone.csproj", "{536FE46C-EF55-4892-9D88-EF4ED3195CD4}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EBay.PhotoSDK", "EBay.PhotoSDK\EBay.PhotoSDK.csproj", "{39A41292-BE22-4483-A532-4DB80797A240}"
+EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
 		TakeHomeExercise\TakeHomeExercise.Shared\TakeHomeExercise.Shared.projitems*{163fb5c6-00e7-4fb8-8637-cb05c34aaf6b}*SharedItemsImports = 13
@@ -72,6 +74,16 @@ Global
 		{536FE46C-EF55-4892-9D88-EF4ED3195CD4}.Release|x86.ActiveCfg = Release|x86
 		{536FE46C-EF55-4892-9D88-EF4ED3195CD4}.Release|x86.Build.0 = Release|x86
 		{536FE46C-EF55-4892-9D88-EF4ED3195CD4}.Release|x86.Deploy.0 = Release|x86
+		{39A41292-BE22-4483-A532-4DB80797A240}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{39A41292-BE22-4483-A532-4DB80797A240}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{39A41292-BE22-4483-A532-4DB80797A240}.Debug|ARM.ActiveCfg = Debug|Any CPU
+		{39A41292-BE22-4483-A532-4DB80797A240}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{39A41292-BE22-4483-A532-4DB80797A240}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{39A41292-BE22-4483-A532-4DB80797A240}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{39A41292-BE22-4483-A532-4DB80797A240}.Release|Any CPU.Build.0 = Release|Any CPU
+		{39A41292-BE22-4483-A532-4DB80797A240}.Release|ARM.ActiveCfg = Release|Any CPU
+		{39A41292-BE22-4483-A532-4DB80797A240}.Release|x64.ActiveCfg = Release|Any CPU
+		{39A41292-BE22-4483-A532-4DB80797A240}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

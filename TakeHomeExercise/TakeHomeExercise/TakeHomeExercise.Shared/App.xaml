@@ -2,6 +2,11 @@
     x:Class="TakeHomeExercise.App"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:converters="using:TakeHomeExercise.ValueConverters"
+    xmlns:selectors="using:TakeHomeExercise.TemplateSelectors"
     xmlns:local="using:TakeHomeExercise">
-
+    <Application.Resources>
+        <converters:PhotoConverter x:Key="photoConverter" />
+        <selectors:PhotoItemTemplateSelector x:Key="photoItemTemplateSelector" />
+    </Application.Resources>
 </Application>
