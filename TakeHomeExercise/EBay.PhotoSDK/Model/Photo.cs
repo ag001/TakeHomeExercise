@@ -3,17 +3,16 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
 
 namespace EBay.PhotoSDK.Model
 {
    public class Photo : Helpers.NotifyPropertyChanged
    {
-      public string ID { get; private set; }
       public object Data { get; private set; }
 
-      public Photo( string id, object data )
+      public Photo( object data )
       {
-         this.ID = id;
          this.Data = data;
       }
    }

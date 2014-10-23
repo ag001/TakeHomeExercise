@@ -20,6 +20,14 @@ namespace TakeHomeExercise.TemplateSelectors
             {
                return PhotoItemTemplate;
             }
+            else if( item is EBay.PhotoSDK.Model.LoadingButton )
+            {
+               return LoadingItemTemplate;
+            }
+            else if( item is EBay.PhotoSDK.Model.MoreButton )
+            {
+               return MoreItemTemplate;
+            }
          }
 
          return base.SelectTemplateCore( item, container );

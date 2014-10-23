@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using System.Text;
 using Slyno.Providers._500px;
 using System.Threading.Tasks;
+using EBay.PhotoSDK.Model;
 
 namespace TakeHomeExercise.DataProviders
 {
-    internal class _500pxDataProvider: EBay.PhotoSDK.IDataProvider
+   internal class _500pxDataProvider : EBay.PhotoSDK.IDataProvider
    {
       ApiService m_service;
 
@@ -20,36 +21,29 @@ namespace TakeHomeExercise.DataProviders
          return false;
       }
 
-      public Task DoAuthenticationAsync( Action<bool> fAuthenticated )
+      public void DoAuthenticationAsync( Action<bool> fAuthenticated )
       {
          throw new NotImplementedException();
       }
 
-      public System.Threading.Tasks.Task InitAsync()
+      public void InitAsync( Action initCompleted )
       {
-         return Task.Factory.StartNew( () => { } );
+         initCompleted();
       }
 
-      public async System.Threading.Tasks.Task LoadDataAsync( int pageId, int perPage, Action<bool, IReadOnlyList<EBay.PhotoSDK.Model.Photo>> result )
+      public async System.Threading.Tasks.Task LoadDataAsync( PhotoSearchParams searchParams, int pageId, int perPage, Action<bool, IReadOnlyList<object>, int> result )
       {
          Query query = new Query();
-         query.Tags.Add( "Flowers" );
+         query.Tags.Add( searchParams.SearchText );
          query.ResultSize = perPage;
          SearchResult searchResult = await m_service.Search( query );
          if( searchResult == null )
          {
-            result( false, null );
+            result( false, null, 0 );
             return;
          }
 
-         List<EBay.PhotoSDK.Model.Photo> list = new List<EBay.PhotoSDK.Model.Photo>();
-         foreach( var item in searchResult.photos )
-         {
-            EBay.PhotoSDK.Model.Photo photo = new EBay.PhotoSDK.Model.Photo( item.id.ToString(), item );
-            list.Add( photo );
-         }
-
-         result( true, list );
+         result( true, searchResult.photos, searchResult.total_items );
       }
 
    }

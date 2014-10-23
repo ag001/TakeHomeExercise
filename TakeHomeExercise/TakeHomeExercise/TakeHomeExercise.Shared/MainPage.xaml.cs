@@ -74,5 +74,17 @@ namespace TakeHomeExercise
       {
 
       }
+
+      private void ListViewControl_SelectionChanged( object sender, SelectionChangedEventArgs e )
+      {
+         if( ListViewControl.SelectedIndex >= 0 )
+         {
+            object item = ListViewControl.Items[ ListViewControl.SelectedIndex ];
+            if( item is EBay.PhotoSDK.Model.Photo )
+            {
+
+            }
+         }
+      }
    }
 }

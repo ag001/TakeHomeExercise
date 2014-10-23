@@ -17,7 +17,16 @@
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)DataProviders\FlickrDataProvider.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)DataProviders\_500pxDataProvider.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)MainPage.xaml.cs">
+      <DependentUpon>MainPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)TemplateSelectors\PhotoTemplateSelector.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ValueConverters\PhotoConverter.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="$(MSBuildThisFileDirectory)MainPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
 </Project>

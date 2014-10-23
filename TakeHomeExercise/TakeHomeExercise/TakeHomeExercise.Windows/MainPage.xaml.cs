@@ -25,6 +25,15 @@ namespace TakeHomeExercise
         public MainPage()
         {
             this.InitializeComponent();
+
+            this.DataContext = ( ( App ) App.Current ).ViewModel;
+
+            this.Loaded += ( o, e ) =>
+            {
+               ( ( App ) App.Current ).ViewModel.SetDispatcher( this.Dispatcher );
+               ( ( App ) App.Current ).ViewModel.InitAsync();
+               ( ( App ) App.Current ).ViewModel.Load( new EBay.PhotoSDK.Model.PhotoSearchParams { SearchText = "clouds" } );
+            };
         }
     }
 }

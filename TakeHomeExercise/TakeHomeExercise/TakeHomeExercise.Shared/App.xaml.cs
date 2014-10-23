@@ -31,7 +31,7 @@ namespace TakeHomeExercise
       public event EventHandler<Windows.ApplicationModel.Activation.WebAuthenticationBrokerContinuationEventArgs> AppActivatedEvent;
 #endif
 
-      public EBay.PhotoSDK.ViewModel.PhotoStoreViewModel ViewModel { get; private set; }
+      public EBay.PhotoSDK.ViewModel.PhotoStoreViewModel ViewModel { get; set; }
 
       /// <summary>
       /// Initializes the singleton application object.  This is the first line of authored code
@@ -41,8 +41,6 @@ namespace TakeHomeExercise
       {
          this.InitializeComponent();
          this.Suspending += this.OnSuspending;
-
-         ViewModel = new EBay.PhotoSDK.ViewModel.PhotoStoreViewModel( new DataProviders.FlickrDataProvider() );
       }
 
 #if WINDOWS_PHONE_APP

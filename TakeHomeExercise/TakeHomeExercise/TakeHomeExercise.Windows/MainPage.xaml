@@ -8,6 +8,14 @@
     mc:Ignorable="d">
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-
+        <GridView x:Name="ListViewControl" ItemsSource="{Binding Photos}" ItemTemplateSelector="{StaticResource photoItemTemplateSelector}">
+            <GridView.ItemTemplate>
+                <DataTemplate>
+                    <Border Margin="10">
+                        <Image MaxHeight="100" MaxWidth="100" Source="{Binding Converter={StaticResource photoConverter}}" Stretch="Fill"></Image>
+                    </Border>
+                </DataTemplate>
+            </GridView.ItemTemplate>
+        </GridView>
     </Grid>
 </Page>

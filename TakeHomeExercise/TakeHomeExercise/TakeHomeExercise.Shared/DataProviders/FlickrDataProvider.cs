@@ -1,4 +1,5 @@
-﻿using FlickrNet;
+﻿using EBay.PhotoSDK.Model;
+using FlickrNet;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -7,6 +8,8 @@ using Windows.Security.Authentication.Web;
 
 namespace TakeHomeExercise.DataProviders
 {
+   // EbayTakeHomeaccount123@yahoo.com
+   // Helloworld123
    public sealed class FlickrDataProvider : EBay.PhotoSDK.IDataProvider
    {
       private const string m_callbackUri = "http://test.com";
@@ -15,20 +18,23 @@ namespace TakeHomeExercise.DataProviders
 
       private OAuthRequestToken m_token;
 
+      Action<bool> m_fAuthenticated;
+
       public FlickrDataProvider()
       {
-         m_flickr = new FlickrNet.Flickr( "cf933b74598c39c8d4a1ca8fb7546570", "f6c9a280de0cc59e" );
+         m_flickr = new FlickrNet.Flickr( "74a20ca76c95a380d18518f97b8f8228", "2d4668334771517c" );
+
 #if true
          // You can comment out this code to see how authentication works.
-         m_flickr.OAuthAccessToken = "72157648914745815-53d9747dd41565d3";
-         m_flickr.OAuthAccessTokenSecret = "d0ec86315d8fbf79";
+         m_flickr.OAuthAccessToken = "72157648515254950-b539f15478069911";
+         m_flickr.OAuthAccessTokenSecret = "8c5aa3f6d0b3c2dd";
 #endif
       }
 
 #if WINDOWS_PHONE_APP
       void FlickrDataProvider_AppActivatedEvent( object sender, Windows.ApplicationModel.Activation.WebAuthenticationBrokerContinuationEventArgs e )
       {
-         ContinueWithWebAuthenticationResult( e.WebAuthenticationResult );
+         var ignore = ContinueWithWebAuthenticationResultAsync( e.WebAuthenticationResult );
       }
 #endif
 
@@ -37,8 +43,15 @@ namespace TakeHomeExercise.DataProviders
          return string.IsNullOrEmpty( m_flickr.OAuthAccessToken ) || string.IsNullOrEmpty( m_flickr.OAuthAccessTokenSecret );
       }
 
-      public async Task DoAuthenticationAsync( Action<bool> fAuthenticated )
+      public void InitAsync( Action initCompleted )
       {
+         initCompleted();
+      }
+
+      public async void DoAuthenticationAsync( Action<bool> fAuthenticated )
+      {
+         m_fAuthenticated = fAuthenticated;
+
 #if WINDOWS_PHONE_APP
          ( ( App )App.Current ).AppActivatedEvent += FlickrDataProvider_AppActivatedEvent;
 #endif
@@ -46,39 +59,42 @@ namespace TakeHomeExercise.DataProviders
          m_token = await m_flickr.OAuthRequestTokenAsync( m_callbackUri );
 
          string uri = m_flickr.OAuthCalculateAuthorizationUrl( m_token.Token, AuthLevel.Read );
+
 #if WINDOWS_PHONE_APP
          WebAuthenticationBroker.AuthenticateAndContinue( new Uri( uri ), new Uri( m_callbackUri ) );
 #else
          WebAuthenticationResult result = await WebAuthenticationBroker.AuthenticateAsync( WebAuthenticationOptions.None, new Uri( uri ), new Uri( m_callbackUri ) );
-         ContinueWithWebAuthenticationResult( result );
+         await ContinueWithWebAuthenticationResultAsync( result );
 #endif
       }
 
-      public Task InitAsync()
+      private async Task ContinueWithWebAuthenticationResultAsync( WebAuthenticationResult result )
       {
-         return Task.Factory.StartNew( () => { } );
+         string OAuthVerifier = GetQueryParameter( result.ResponseData.ToString(), "oauth_verifier" );
+
+         OAuthAccessToken accessToken = await m_flickr.OAuthAccessTokenAsync( m_token.Token, m_token.TokenSecret, OAuthVerifier );
+
+         m_flickr.OAuthAccessTokenSecret = accessToken.TokenSecret;
+         m_flickr.OAuthAccessToken = accessToken.Token;
+
+         m_fAuthenticated( true );
       }
 
-      public async Task LoadDataAsync( int pageId, int perPage, Action<bool, IReadOnlyList<EBay.PhotoSDK.Model.Photo>> result )
+      public async Task LoadDataAsync( PhotoSearchParams searchParams, int pageId, int perPage, Action<bool, IReadOnlyList<object>, int> result )
       {
          PhotoSearchOptions options = new PhotoSearchOptions();
-         options.Text = "flowers";
+         options.Text = searchParams.SearchText;
+         options.PerPage = perPage;
+         options.Page = pageId;
          PhotoCollection coll = await m_flickr.PhotosSearchAsync( options );
 
          if( coll == null )
          {
-            result( false, null );
+            result( false, null, 0 );
             return;
          }
 
-         List<EBay.PhotoSDK.Model.Photo> list = new List<EBay.PhotoSDK.Model.Photo>();
-         foreach( var item in coll )
-         {
-            EBay.PhotoSDK.Model.Photo photo = new EBay.PhotoSDK.Model.Photo( item.PhotoId, item );
-            list.Add( photo );
-         }
-
-         result( true, list );
+         result( true, coll, coll.Pages * coll.Count );
       }
 
       private static string GetQueryParameter( string input, string parameterName )
@@ -92,17 +108,6 @@ namespace TakeHomeExercise.DataProviders
             }
          }
          return String.Empty;
-      }
-
-      private async void ContinueWithWebAuthenticationResult( WebAuthenticationResult result )
-      {
-         string OAuthVerifier = GetQueryParameter( result.ResponseData.ToString(), "oauth_verifier" );
-
-         OAuthAccessToken accessToken = await m_flickr.OAuthAccessTokenAsync( m_token.Token, m_token.TokenSecret, OAuthVerifier );
-
-         m_flickr.OAuthAccessTokenSecret = accessToken.TokenSecret;
-         m_flickr.OAuthAccessToken = accessToken.Token;
-
       }
    }
 }

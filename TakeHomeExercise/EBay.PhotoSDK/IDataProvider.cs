@@ -11,10 +11,10 @@ namespace EBay.PhotoSDK
    {
       bool FRequiresAuthentication();
 
-      Task DoAuthenticationAsync( Action<bool> fAuthenticated );
+      void DoAuthenticationAsync( Action<bool> fAuthenticated );
 
-      Task InitAsync();
+      void InitAsync( Action initCompleted );
 
-      Task LoadDataAsync( int pageId, int perPage, Action<bool, IReadOnlyList<Photo>> result );
+      Task LoadDataAsync( PhotoSearchParams searchParams, int pageId, int perPage, Action<bool, IReadOnlyList<object>, int> result );
    }
 }

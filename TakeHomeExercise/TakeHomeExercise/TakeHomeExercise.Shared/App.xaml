@@ -6,7 +6,28 @@
     xmlns:selectors="using:TakeHomeExercise.TemplateSelectors"
     xmlns:local="using:TakeHomeExercise">
     <Application.Resources>
+
+        <DataTemplate x:Key="moreItemTemplate">
+            <Button Content="more" Width="100" Height="100" Command="{Binding IMoreCommand}" HorizontalAlignment="Center" VerticalAlignment="Center" />
+        </DataTemplate>
+
+        <DataTemplate x:Key="loadingItemTemplate">
+            <Border Background="DarkGray" Width="100" Height="100">
+                <TextBlock Text="Loading..." FontSize="20" Foreground="Black" HorizontalAlignment="Center" VerticalAlignment="Center" />
+            </Border>
+        </DataTemplate>
+
+        <DataTemplate x:Key="photoItemTemplate">
+            <Border Margin="10">
+                <Image MaxHeight="100" MaxWidth="100" Source="{Binding Converter={StaticResource photoConverter}}" Stretch="Fill"></Image>
+            </Border>
+        </DataTemplate>
+
         <converters:PhotoConverter x:Key="photoConverter" />
-        <selectors:PhotoItemTemplateSelector x:Key="photoItemTemplateSelector" />
+
+        <selectors:PhotoItemTemplateSelector x:Key="photoItemTemplateSelector"
+                                             PhotoItemTemplate="{StaticResource photoItemTemplate}"
+                                             MoreItemTemplate="{StaticResource moreItemTemplate}"
+                                             LoadingItemTemplate="{StaticResource loadingItemTemplate}"/>
     </Application.Resources>
 </Application>

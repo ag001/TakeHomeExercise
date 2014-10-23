@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace EBay.PhotoSDK.Model
 {
-   public class PagedCollection : System.Collections.ObjectModel.ObservableCollection<Photo>
+   public class PagedCollection : System.Collections.ObjectModel.ObservableCollection<object>
    {
       public PagedCollection()
       {
@@ -19,6 +19,53 @@ namespace EBay.PhotoSDK.Model
             foreach( var item in result )
             {
                this.Add( item );
+            }
+         }
+      }
+
+      public void ShowLoading()
+      {
+         if( this.Count == 0 )
+         {
+            this.Add( new PhotoSDK.Model.LoadingButton() );
+         }
+         else if( ( this[ this.Count - 1 ] is PhotoSDK.Model.LoadingButton ) == false )
+         {
+            this.Add( new PhotoSDK.Model.LoadingButton() );
+         }
+      }
+
+      public void HideLoading()
+      {
+         if( this.Count > 0 )
+         {
+            if( this[ this.Count - 1 ] is PhotoSDK.Model.LoadingButton )
+            {
+               this.RemoveAt( this.Count - 1 );
+            }
+         }
+      }
+
+      public void ShowMoreButton( System.Windows.Input.ICommand cmd )
+      {
+         if( this.Count == 0 )
+         {
+            this.Add( new PhotoSDK.Model.MoreButton( cmd ) );
+         }
+         else if( ( this[ this.Count - 1 ] is PhotoSDK.Model.MoreButton ) == false )
+         {
+            this.Add( new PhotoSDK.Model.MoreButton( cmd ) );
+         }
+
+      }
+
+      public void HideMoreButton()
+      {
+         if( this.Count > 0 )
+         {
+            if( this[ this.Count - 1 ] is PhotoSDK.Model.MoreButton )
+            {
+               this.RemoveAt( this.Count - 1 );
             }
          }
       }

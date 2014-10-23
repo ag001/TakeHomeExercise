@@ -9,7 +9,7 @@
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <Page.BottomAppBar>
-        <CommandBar>
+        <CommandBar IsOpen="True">
             <AppBarButton Label="Flickr" Click="AppBarButton_Click">
                 <AppBarButton.Icon>
                     <FontIcon Glyph="F"/>
@@ -29,6 +29,8 @@
     </Page.BottomAppBar>
     <Grid>
         <GridView x:Name="ListViewControl" ItemsSource="{Binding Photos}"
+                  SelectionMode="Single"
+                  SelectionChanged="ListViewControl_SelectionChanged"
                   ItemTemplateSelector="{StaticResource photoItemTemplateSelector}">
         </GridView>
     </Grid>
