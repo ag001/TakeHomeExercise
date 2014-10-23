@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace EBay.PhotoSDK.Model
 {
-   public class PagedCollection : System.Collections.ObjectModel.ObservableCollection<object>
+   public sealed class PagedCollection : System.Collections.ObjectModel.ObservableCollection<object>
    {
       public PagedCollection()
       {

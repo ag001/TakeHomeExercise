@@ -80,7 +80,7 @@ namespace TakeHomeExercise.DataProviders
          m_fAuthenticated( true );
       }
 
-      public async Task LoadDataAsync( PhotoSearchParams searchParams, int pageId, int perPage, Action<bool, IReadOnlyList<object>, int> result )
+      public async void LoadDataAsync( PhotoSearchParams searchParams, int pageId, int perPage, Action<bool, IReadOnlyList<object>, int> result )
       {
          PhotoSearchOptions options = new PhotoSearchOptions();
          options.Text = searchParams.SearchText;

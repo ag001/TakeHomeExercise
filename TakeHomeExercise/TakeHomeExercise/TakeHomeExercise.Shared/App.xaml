@@ -8,7 +8,7 @@
     <Application.Resources>
 
         <DataTemplate x:Key="moreItemTemplate">
-            <Button Content="more" Width="100" Height="100" Command="{Binding IMoreCommand}" HorizontalAlignment="Center" VerticalAlignment="Center" />
+            <Button Content="more" Width="100" Height="100" Margin="0" Padding="0" Command="{Binding IMoreCommand}" HorizontalAlignment="Center" VerticalAlignment="Center" />
         </DataTemplate>
 
         <DataTemplate x:Key="loadingItemTemplate">
@@ -19,11 +19,12 @@
 
         <DataTemplate x:Key="photoItemTemplate">
             <Border Margin="10">
-                <Image MaxHeight="100" MaxWidth="100" Source="{Binding Converter={StaticResource photoConverter}}" Stretch="Fill"></Image>
+                <Image MaxHeight="100" MaxWidth="100" Source="{Binding Converter={StaticResource photoConverter}}" Stretch="UniformToFill"></Image>
             </Border>
         </DataTemplate>
 
         <converters:PhotoConverter x:Key="photoConverter" />
+        <converters:PhotoTitleConverter x:Key="photoTitleConverter" />
 
         <selectors:PhotoItemTemplateSelector x:Key="photoItemTemplateSelector"
                                              PhotoItemTemplate="{StaticResource photoItemTemplate}"

@@ -70,9 +70,19 @@ namespace TakeHomeExercise
          // this event is handled for you.
       }
 
-      private void AppBarButton_Click( object sender, RoutedEventArgs e )
+      private void AppBarButtonF_Click( object sender, RoutedEventArgs e )
       {
+         App.ViewModel.SetProvider( new DataProviders.FlickrDataProvider(), this.Dispatcher );
+      }
 
+      private void AppBarButtonPx_Click( object sender, RoutedEventArgs e )
+      {
+         App.ViewModel.SetProvider( new DataProviders._500pxDataProvider(), this.Dispatcher );
+      }
+
+      private void AppBarButtonL_Click( object sender, RoutedEventArgs e )
+      {
+         App.ViewModel.SetProvider( new DataProviders._500pxDataProvider(), this.Dispatcher );
       }
 
       private void ListViewControl_SelectionChanged( object sender, SelectionChangedEventArgs e )
@@ -82,7 +92,7 @@ namespace TakeHomeExercise
             object item = ListViewControl.Items[ ListViewControl.SelectedIndex ];
             if( item is EBay.PhotoSDK.Model.Photo )
             {
-
+               this.Frame.Navigate( typeof( PhotoDetails ), item );
             }
          }
       }

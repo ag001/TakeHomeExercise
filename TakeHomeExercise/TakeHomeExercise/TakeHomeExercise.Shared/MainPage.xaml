@@ -10,17 +10,17 @@
 
     <Page.BottomAppBar>
         <CommandBar IsOpen="True">
-            <AppBarButton Label="Flickr" Click="AppBarButton_Click">
+            <AppBarButton Label="Flickr" Click="AppBarButtonF_Click">
                 <AppBarButton.Icon>
                     <FontIcon Glyph="F"/>
                 </AppBarButton.Icon>
             </AppBarButton>
-            <AppBarButton Label="500px" Click="AppBarButton_Click">
+            <AppBarButton Label="500px" Click="AppBarButtonPx_Click">
                 <AppBarButton.Icon>
                     <FontIcon Glyph="Px"/>
                 </AppBarButton.Icon>
             </AppBarButton>
-            <AppBarButton Label="Library" Click="AppBarButton_Click">
+            <AppBarButton Label="Library" Click="AppBarButtonL_Click">
                 <AppBarButton.Icon>
                     <FontIcon Glyph="L"/>
                 </AppBarButton.Icon>

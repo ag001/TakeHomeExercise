@@ -4,7 +4,7 @@ using Windows.UI.Core;
 
 namespace EBay.PhotoSDK.ViewModel
 {
-   public class PhotoStoreViewModel
+   public sealed class PhotoStoreViewModel
    {
       private const int PicturesPerPage = 10;
 
@@ -34,6 +34,11 @@ namespace EBay.PhotoSDK.ViewModel
          SetDispatcher( dispatcher );
 
          m_provider = provider;
+
+         m_initDone = false;
+
+         this.Photos.Clear();
+         InitAsync();
       }
 
       public void SetDispatcher( CoreDispatcher dispatcher )
@@ -86,6 +91,9 @@ namespace EBay.PhotoSDK.ViewModel
          {
             m_searchParams = searchParams;
 
+            CurrentPage = 0;
+            Photos.Clear();
+
             Photos.HideMoreButton();
             Photos.ShowLoading();
          }
@@ -103,8 +111,7 @@ namespace EBay.PhotoSDK.ViewModel
                var ignore = dispatcher.RunAsync( CoreDispatcherPriority.Normal, () =>
                {
                   Photos.HideLoading();
-                  //
-                  //Photos.Append( fSuccess, result );
+
                   //
                   if( fSuccess && result != null && result.Count > 0 )
                   {
@@ -115,6 +122,7 @@ namespace EBay.PhotoSDK.ViewModel
                      }
                   }
 
+                  //
                   if( total > Photos.Count )
                   {
                      Photos.ShowMoreButton( this.m_loadCommand );
@@ -150,7 +158,11 @@ namespace EBay.PhotoSDK.ViewModel
             return true;
          }
 
-         public event EventHandler CanExecuteChanged;
+         public event EventHandler CanExecuteChanged
+         {
+            add { }
+            remove { }
+         }
 
          public void Execute( object parameter )
          {

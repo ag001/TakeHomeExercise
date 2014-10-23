@@ -15,6 +15,6 @@ namespace EBay.PhotoSDK
 
       void InitAsync( Action initCompleted );
 
-      Task LoadDataAsync( PhotoSearchParams searchParams, int pageId, int perPage, Action<bool, IReadOnlyList<object>, int> result );
+      void LoadDataAsync( PhotoSearchParams searchParams, int pageId, int perPage, Action<bool, IReadOnlyList<object>, int> result );
    }
 }

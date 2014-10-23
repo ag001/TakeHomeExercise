@@ -31,7 +31,7 @@ namespace TakeHomeExercise.DataProviders
          initCompleted();
       }
 
-      public async System.Threading.Tasks.Task LoadDataAsync( PhotoSearchParams searchParams, int pageId, int perPage, Action<bool, IReadOnlyList<object>, int> result )
+      public async void LoadDataAsync( PhotoSearchParams searchParams, int pageId, int perPage, Action<bool, IReadOnlyList<object>, int> result )
       {
          Query query = new Query();
          query.Tags.Add( searchParams.SearchText );
