@@ -20,7 +20,7 @@
                     <FontIcon Glyph="Px"/>
                 </AppBarButton.Icon>
             </AppBarButton>
-            <AppBarButton Label="Library" Click="AppBarButtonL_Click" Visibility="Collapsed">
+            <AppBarButton Label="Library" Click="AppBarButtonL_Click">
                 <AppBarButton.Icon>
                     <FontIcon Glyph="L"/>
                 </AppBarButton.Icon>

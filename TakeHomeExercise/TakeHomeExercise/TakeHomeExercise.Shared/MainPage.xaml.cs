@@ -82,7 +82,7 @@ namespace TakeHomeExercise
 
       private void AppBarButtonL_Click( object sender, RoutedEventArgs e )
       {
-         App.ViewModel.SetProvider( new DataProviders._500pxDataProvider(), this.Dispatcher );
+         App.ViewModel.SetProvider( new DataProviders.PhotoLibraryProvider(), this.Dispatcher );
       }
 
       private void ListViewControl_SelectionChanged( object sender, SelectionChangedEventArgs e )

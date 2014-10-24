@@ -12,7 +12,7 @@ namespace EBay.PhotoSDK.Model
       {
       }
 
-      internal void Append( bool fSuccess, IReadOnlyList<Photo> result )
+      internal void Append( bool fSuccess, IReadOnlyList<object> result )
       {
          if( fSuccess )
          {

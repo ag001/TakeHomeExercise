@@ -39,6 +39,14 @@ namespace TakeHomeExercise.ValueConverters
                image.SetSource( thumbnail );
                return image;
             }
+            else if( photo.Data is DataProviders.PhotoLibraryProvider.StorageFileWrapper )
+            {
+               DataProviders.PhotoLibraryProvider.StorageFileWrapper p = ( DataProviders.PhotoLibraryProvider.StorageFileWrapper ) photo.Data;
+               if( p != null )
+               {
+                  return p.PhotoSource;
+               }
+            }
          }
 
          return DependencyProperty.UnsetValue;

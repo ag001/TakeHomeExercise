@@ -91,7 +91,7 @@ namespace EBay.PhotoSDK.ViewModel
          {
             m_searchParams = searchParams;
 
-            CurrentPage = 0;
+            CurrentPage = 1;
             Photos.Clear();
          }
 
@@ -111,11 +111,7 @@ namespace EBay.PhotoSDK.ViewModel
                   //
                   if( fSuccess && result != null && result.Count > 0 )
                   {
-                     foreach( var item in result )
-                     {
-                        EBay.PhotoSDK.Model.Photo photo = new EBay.PhotoSDK.Model.Photo( item );
-                        Photos.Add( photo );
-                     }
+                     Photos.Append( fSuccess, result );
                   }
 
                   if( Photos.Count == 0 )

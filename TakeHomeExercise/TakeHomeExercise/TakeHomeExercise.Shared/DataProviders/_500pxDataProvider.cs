@@ -43,7 +43,14 @@ namespace TakeHomeExercise.DataProviders
             return;
          }
 
-         result( true, searchResult.photos, 0 );
+         List<EBay.PhotoSDK.Model.Photo> newList = new List<EBay.PhotoSDK.Model.Photo>();
+         foreach( var item in searchResult.photos )
+         {
+            EBay.PhotoSDK.Model.Photo photo = new EBay.PhotoSDK.Model.Photo( item );
+            newList.Add( photo );
+         }
+
+         result( true, newList, 0 );
       }
 
    }

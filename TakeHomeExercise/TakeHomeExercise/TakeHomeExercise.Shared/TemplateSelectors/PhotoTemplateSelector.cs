@@ -12,12 +12,17 @@ namespace TakeHomeExercise.TemplateSelectors
       public DataTemplate MoreItemTemplate { get; set; }
       public DataTemplate PhotoItemTemplate { get; set; }
       public DataTemplate NoneItemTemplate { get; set; }
+      public DataTemplate StorageItemTemplate { get; set; }
 
       protected override DataTemplate SelectTemplateCore( object item, DependencyObject container )
       {
          if( item != null )
          {
-            if( item is EBay.PhotoSDK.Model.Photo )
+            if( item is DataProviders.PhotoLibraryProvider.StorageFileWrapper )
+            {
+               return StorageItemTemplate;
+            }
+            else if( item is EBay.PhotoSDK.Model.Photo )
             {
                return PhotoItemTemplate;
             }

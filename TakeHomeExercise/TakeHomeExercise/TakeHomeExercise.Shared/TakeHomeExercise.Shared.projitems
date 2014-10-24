@@ -20,6 +20,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Common\RelayCommand.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Common\SuspensionManager.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)DataProviders\FlickrDataProvider.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DataProviders\LibraryDataProvider.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)DataProviders\_500pxDataProvider.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>

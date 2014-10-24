@@ -87,15 +87,22 @@ namespace TakeHomeExercise.DataProviders
          options.PerPage = perPage;
          options.Page = pageId;
          options.Extras = PhotoSearchExtras.DateTaken | PhotoSearchExtras.DateUploaded;
-         PhotoCollection coll = await m_flickr.PhotosSearchAsync( options );
+         PhotoCollection resultList = await m_flickr.PhotosSearchAsync( options );
 
-         if( coll == null )
+         if( resultList == null )
          {
             result( false, null, 0 );
             return;
          }
 
-         result( true, coll, coll.Pages * coll.Count );
+         List<EBay.PhotoSDK.Model.Photo> newList = new List<EBay.PhotoSDK.Model.Photo>();
+         foreach( var item in resultList )
+         {
+            EBay.PhotoSDK.Model.Photo photo = new EBay.PhotoSDK.Model.Photo( item );
+            newList.Add( photo );
+         }
+
+         result( true, newList, resultList.Pages * resultList.Count );
       }
 
       private static string GetQueryParameter( string input, string parameterName )
