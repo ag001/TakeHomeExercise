@@ -33,9 +33,13 @@ namespace TakeHomeExercise.DataProviders
       public async void LoadDataAsync( EBay.PhotoSDK.Model.PhotoSearchParams searchParams, int pageId, int perPage, EBay.PhotoSDK.LoadCompleted result )
       {
          int startId = ( pageId - 1 ) * perPage;
+         int count = 0;
          var list = await KnownFolders.PicturesLibrary.GetFilesAsync( CommonFileQuery.OrderByDate, ( uint ) startId, ( uint ) perPage );
+         {
+            int startIdNext = pageId * perPage;
+            count = ( await KnownFolders.PicturesLibrary.GetFilesAsync( CommonFileQuery.OrderByDate, ( uint ) startIdNext, ( uint ) perPage ) ).Count;
+         }
 
-         var count = ( await KnownFolders.PicturesLibrary.GetFilesAsync( CommonFileQuery.OrderByDate ) ).Count;
          if( list == null )
          {
             result( false, null, 0 );
@@ -50,7 +54,7 @@ namespace TakeHomeExercise.DataProviders
             newList.Add( photo );
          }
 
-         result( true, newList, count );
+         result( true, newList, ( count > 0 ) ? ( pageId + 1 ) * perPage : 0 );
       }
 
       public class StorageFileWrapper
@@ -66,7 +70,7 @@ namespace TakeHomeExercise.DataProviders
                if( bmp == null )
                {
                   bmp = new BitmapImage();
-
+                  bmp.DecodePixelWidth = 100;
                   LoadThumbnail();
                }
 
