@@ -11,6 +11,7 @@ namespace TakeHomeExercise.TemplateSelectors
       public DataTemplate LoadingItemTemplate { get; set; }
       public DataTemplate MoreItemTemplate { get; set; }
       public DataTemplate PhotoItemTemplate { get; set; }
+      public DataTemplate NoneItemTemplate { get; set; }
 
       protected override DataTemplate SelectTemplateCore( object item, DependencyObject container )
       {
@@ -27,6 +28,10 @@ namespace TakeHomeExercise.TemplateSelectors
             else if( item is EBay.PhotoSDK.Model.MoreButton )
             {
                return MoreItemTemplate;
+            }
+            else if( item is EBay.PhotoSDK.Model.NoneButton )
+            {
+               return NoneItemTemplate;
             }
          }
 

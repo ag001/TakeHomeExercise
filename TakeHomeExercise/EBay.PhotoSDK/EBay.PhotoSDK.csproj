@@ -48,6 +48,7 @@
     <Compile Include="IDataProvider.cs" />
     <Compile Include="Model\LoadingButton.cs" />
     <Compile Include="Model\MoreButton.cs" />
+    <Compile Include="Model\NoneButton.cs" />
     <Compile Include="Model\PagedCollection.cs" />
     <Compile Include="Model\Photo.cs" />
     <Compile Include="Model\PhotoSearchParams.cs" />

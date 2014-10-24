@@ -23,7 +23,7 @@ namespace EBay.PhotoSDK.Model
          }
       }
 
-      public void ShowLoading()
+      internal void ShowLoading()
       {
          if( this.Count == 0 )
          {
@@ -35,7 +35,7 @@ namespace EBay.PhotoSDK.Model
          }
       }
 
-      public void HideLoading()
+      internal void HideLoading()
       {
          if( this.Count > 0 )
          {
@@ -46,7 +46,7 @@ namespace EBay.PhotoSDK.Model
          }
       }
 
-      public void ShowMoreButton( System.Windows.Input.ICommand cmd )
+      internal void ShowMoreButton( System.Windows.Input.ICommand cmd )
       {
          if( this.Count == 0 )
          {
@@ -56,14 +56,36 @@ namespace EBay.PhotoSDK.Model
          {
             this.Add( new PhotoSDK.Model.MoreButton( cmd ) );
          }
-
       }
 
-      public void HideMoreButton()
+      internal void HideMoreButton()
       {
          if( this.Count > 0 )
          {
             if( this[ this.Count - 1 ] is PhotoSDK.Model.MoreButton )
+            {
+               this.RemoveAt( this.Count - 1 );
+            }
+         }
+      }
+
+      internal void ShowNone()
+      {
+         if( this.Count == 0 )
+         {
+            this.Add( new PhotoSDK.Model.NoneButton() );
+         }
+         else if( ( this[ this.Count - 1 ] is PhotoSDK.Model.NoneButton ) == false )
+         {
+            this.Add( new PhotoSDK.Model.NoneButton() );
+         }
+      }
+
+      internal void HideNone()
+      {
+         if( this.Count > 0 )
+         {
+            if( this[ this.Count - 1 ] is PhotoSDK.Model.NoneButton )
             {
                this.RemoveAt( this.Count - 1 );
             }

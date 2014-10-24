@@ -93,15 +93,11 @@ namespace EBay.PhotoSDK.ViewModel
 
             CurrentPage = 0;
             Photos.Clear();
+         }
 
-            Photos.HideMoreButton();
-            Photos.ShowLoading();
-         }
-         else
-         {
-            Photos.HideMoreButton();
-            Photos.ShowLoading();
-         }
+         Photos.HideMoreButton();
+         Photos.HideNone();
+         Photos.ShowLoading();
 
          m_provider.LoadDataAsync( searchParams, CurrentPage, PicturesPerPage, ( fSuccess, result, total ) =>
          {
@@ -122,8 +118,11 @@ namespace EBay.PhotoSDK.ViewModel
                      }
                   }
 
-                  //
-                  if( total > Photos.Count )
+                  if( Photos.Count == 0 )
+                  {
+                     Photos.ShowNone();
+                  }
+                  else if( total > Photos.Count )
                   {
                      Photos.ShowMoreButton( this.m_loadCommand );
                   }

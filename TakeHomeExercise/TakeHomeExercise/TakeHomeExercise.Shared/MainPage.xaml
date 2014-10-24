@@ -20,7 +20,7 @@
                     <FontIcon Glyph="Px"/>
                 </AppBarButton.Icon>
             </AppBarButton>
-            <AppBarButton Label="Library" Click="AppBarButtonL_Click">
+            <AppBarButton Label="Library" Click="AppBarButtonL_Click" Visibility="Collapsed">
                 <AppBarButton.Icon>
                     <FontIcon Glyph="L"/>
                 </AppBarButton.Icon>
@@ -30,6 +30,7 @@
     <Grid>
         <GridView x:Name="ListViewControl" ItemsSource="{Binding Photos}"
                   SelectionMode="Single"
+                  Margin="10"
                   SelectionChanged="ListViewControl_SelectionChanged"
                   ItemTemplateSelector="{StaticResource photoItemTemplateSelector}">
         </GridView>

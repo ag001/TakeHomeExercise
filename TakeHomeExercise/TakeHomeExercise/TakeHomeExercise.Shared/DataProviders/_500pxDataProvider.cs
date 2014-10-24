@@ -43,7 +43,7 @@ namespace TakeHomeExercise.DataProviders
             return;
          }
 
-         result( true, searchResult.photos, searchResult.total_items );
+         result( true, searchResult.photos, 0 );
       }
 
    }

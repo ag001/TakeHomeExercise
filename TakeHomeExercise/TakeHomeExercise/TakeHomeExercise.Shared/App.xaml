@@ -23,12 +23,19 @@
             </Border>
         </DataTemplate>
 
+        <DataTemplate x:Key="noneItemTemplate">
+            <Border Background="DarkGray" Width="100" Height="100">
+                <TextBlock Text="EMPTY!" FontSize="20" Foreground="Black" HorizontalAlignment="Center" VerticalAlignment="Center" />
+            </Border>
+        </DataTemplate>
+
         <converters:PhotoConverter x:Key="photoConverter" />
         <converters:PhotoTitleConverter x:Key="photoTitleConverter" />
 
         <selectors:PhotoItemTemplateSelector x:Key="photoItemTemplateSelector"
                                              PhotoItemTemplate="{StaticResource photoItemTemplate}"
                                              MoreItemTemplate="{StaticResource moreItemTemplate}"
+                                             NoneItemTemplate="{StaticResource noneItemTemplate}"
                                              LoadingItemTemplate="{StaticResource loadingItemTemplate}"/>
     </Application.Resources>
 </Application>
