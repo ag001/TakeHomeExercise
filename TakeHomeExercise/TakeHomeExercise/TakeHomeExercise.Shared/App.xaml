@@ -31,6 +31,7 @@
 
         <converters:PhotoConverter x:Key="photoConverter" />
         <converters:PhotoTitleConverter x:Key="photoTitleConverter" />
+        <converters:PhotoDateConverter x:Key="photoDateConverter" />
 
         <selectors:PhotoItemTemplateSelector x:Key="photoItemTemplateSelector"
                                              PhotoItemTemplate="{StaticResource photoItemTemplate}"

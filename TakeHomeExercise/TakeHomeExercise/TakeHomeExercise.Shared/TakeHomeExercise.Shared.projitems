@@ -26,6 +26,7 @@
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)TemplateSelectors\PhotoTemplateSelector.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ValueConverters\PhotoConverter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ValueConverters\PhotoDateConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ValueConverters\PhotoTitleConverter.cs" />
   </ItemGroup>
   <ItemGroup>

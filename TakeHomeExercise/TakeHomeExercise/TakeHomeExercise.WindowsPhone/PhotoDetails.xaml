@@ -13,6 +13,10 @@
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
         <Image Grid.Row="0" Stretch="Uniform" Source="{Binding Converter={StaticResource photoConverter}}"></Image>
-        <TextBlock Grid.Row="1" Foreground="White" FontSize="20" TextWrapping="Wrap" Text="{Binding Converter={StaticResource photoTitleConverter}}" />
+
+        <StackPanel Grid.Row="1" Orientation="Vertical">
+            <TextBlock Foreground="White" FontSize="20" TextWrapping="Wrap" Text="{Binding Converter={StaticResource photoTitleConverter}}" />
+            <TextBlock Foreground="White" FontSize="10" TextWrapping="Wrap" Text="{Binding Converter={StaticResource photoDateConverter}}" />
+        </StackPanel>
     </Grid>
 </Page>

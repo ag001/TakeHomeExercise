@@ -86,6 +86,7 @@ namespace TakeHomeExercise.DataProviders
          options.Text = searchParams.SearchText;
          options.PerPage = perPage;
          options.Page = pageId;
+         options.Extras = PhotoSearchExtras.DateTaken | PhotoSearchExtras.DateUploaded;
          PhotoCollection coll = await m_flickr.PhotosSearchAsync( options );
 
          if( coll == null )
