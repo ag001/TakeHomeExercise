@@ -8,7 +8,11 @@
     mc:Ignorable="d">
 
     <Grid x:Name="LayoutGrid" Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        <Image Stretch="Uniform" Source="{Binding Converter={StaticResource photoConverter}}"></Image>
-        <TextBlock Text="{Binding Converter={StaticResource photoTitleConverter}}" />
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <Image Grid.Row="0" Stretch="Uniform" Source="{Binding Converter={StaticResource photoConverter}}"></Image>
+        <TextBlock Grid.Row="1" Foreground="White" FontSize="20" TextWrapping="Wrap" Text="{Binding Converter={StaticResource photoTitleConverter}}" />
     </Grid>
 </Page>

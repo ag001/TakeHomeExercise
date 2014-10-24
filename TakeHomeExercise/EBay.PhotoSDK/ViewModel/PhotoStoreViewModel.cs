@@ -6,7 +6,7 @@ namespace EBay.PhotoSDK.ViewModel
 {
    public sealed class PhotoStoreViewModel
    {
-      private const int PicturesPerPage = 10;
+      private const int PicturesPerPage = 20;
 
       public PagedCollection Photos { get; private set; }
 

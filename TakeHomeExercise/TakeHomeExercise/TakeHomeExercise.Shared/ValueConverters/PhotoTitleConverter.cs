@@ -9,6 +9,8 @@ namespace TakeHomeExercise.ValueConverters
 {
    public class PhotoTitleConverter : IValueConverter
    {
+      private const string c_noTitle = "no title";
+
       public object Convert( object value, Type targetType, object parameter, string culture )
       {
          if( value is EBay.PhotoSDK.Model.Photo )
@@ -18,11 +20,19 @@ namespace TakeHomeExercise.ValueConverters
             if( photo.Data is FlickrNet.Photo )
             {
                FlickrNet.Photo p = ( FlickrNet.Photo ) photo.Data;
+
+               if( string.IsNullOrEmpty( p.Title ) )
+                  return c_noTitle;
+
                return p.Title;
             }
             else if( photo.Data is Slyno.Providers._500px.Photo )
             {
                Slyno.Providers._500px.Photo p = ( Slyno.Providers._500px.Photo ) photo.Data;
+
+               if( string.IsNullOrEmpty( p.name ) )
+                  return c_noTitle;
+
                return p.name;
             }
             else if( photo.Data is StorageFile )
