@@ -21,17 +21,17 @@ namespace TakeHomeExercise.DataProviders
          return false;
       }
 
-      public void DoAuthenticationAsync( Action<bool> fAuthenticated )
+      public void DoAuthenticationAsync( EBay.PhotoSDK.AuthenticationCompleted fAuthenticated )
       {
          throw new NotImplementedException();
       }
 
-      public void InitAsync( Action initCompleted )
+      public void InitAsync( EBay.PhotoSDK.InitCompleted initCompleted )
       {
          initCompleted();
       }
 
-      public async void LoadDataAsync( PhotoSearchParams searchParams, int pageId, int perPage, Action<bool, IReadOnlyList<object>, int> result )
+      public async void LoadDataAsync( PhotoSearchParams searchParams, int pageId, int perPage, EBay.PhotoSDK.LoadCompleted result )
       {
          Query query = new Query();
          query.Tags.Add( searchParams.SearchText );

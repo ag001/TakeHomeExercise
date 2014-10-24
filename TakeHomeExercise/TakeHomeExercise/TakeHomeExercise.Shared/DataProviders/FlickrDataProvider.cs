@@ -18,7 +18,7 @@ namespace TakeHomeExercise.DataProviders
 
       private OAuthRequestToken m_token;
 
-      Action<bool> m_fAuthenticated;
+      EBay.PhotoSDK.AuthenticationCompleted m_fAuthenticated;
 
       public FlickrDataProvider()
       {
@@ -43,12 +43,12 @@ namespace TakeHomeExercise.DataProviders
          return string.IsNullOrEmpty( m_flickr.OAuthAccessToken ) || string.IsNullOrEmpty( m_flickr.OAuthAccessTokenSecret );
       }
 
-      public void InitAsync( Action initCompleted )
+      public void InitAsync( EBay.PhotoSDK.InitCompleted initCompleted )
       {
          initCompleted();
       }
 
-      public async void DoAuthenticationAsync( Action<bool> fAuthenticated )
+      public async void DoAuthenticationAsync( EBay.PhotoSDK.AuthenticationCompleted fAuthenticated )
       {
          m_fAuthenticated = fAuthenticated;
 
@@ -80,7 +80,7 @@ namespace TakeHomeExercise.DataProviders
          m_fAuthenticated( true );
       }
 
-      public async void LoadDataAsync( PhotoSearchParams searchParams, int pageId, int perPage, Action<bool, IReadOnlyList<object>, int> result )
+      public async void LoadDataAsync( PhotoSearchParams searchParams, int pageId, int perPage, EBay.PhotoSDK.LoadCompleted result )
       {
          PhotoSearchOptions options = new PhotoSearchOptions();
          options.Text = searchParams.SearchText;
