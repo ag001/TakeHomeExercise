@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using Windows.Storage;
 using Windows.Storage.FileProperties;
+using Windows.Storage.Streams;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Media.Imaging;
@@ -20,7 +21,11 @@ namespace TakeHomeExercise.ValueConverters
             if( photo.Data is FlickrNet.Photo )
             {
                FlickrNet.Photo p = ( FlickrNet.Photo ) photo.Data;
-               return p.MediumUrl;
+
+               if( parameter == null )
+                  return p.ThumbnailUrl;
+               else
+                  return p.LargeUrl;
             }
             else if( photo.Data is Slyno.Providers._500px.Photo )
             {
@@ -44,7 +49,14 @@ namespace TakeHomeExercise.ValueConverters
                DataProviders.PhotoLibraryProvider.StorageFileWrapper p = ( DataProviders.PhotoLibraryProvider.StorageFileWrapper ) photo.Data;
                if( p != null )
                {
-                  return p.PhotoSource;
+                  if( parameter == null )
+                  {
+                     return p.PhotoSource;
+                  }
+                  else
+                  {
+                     return p.PhotoSourceDetailed;
+                  }
                }
             }
          }

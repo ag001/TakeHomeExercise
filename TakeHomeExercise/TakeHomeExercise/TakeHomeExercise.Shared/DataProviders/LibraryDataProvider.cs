@@ -62,6 +62,7 @@ namespace TakeHomeExercise.DataProviders
          private StorageFile m_file;
 
          private BitmapImage bmp;
+         private BitmapImage bmpDetailed;
 
          public BitmapImage PhotoSource
          {
@@ -78,6 +79,20 @@ namespace TakeHomeExercise.DataProviders
             }
          }
 
+         public BitmapImage PhotoSourceDetailed
+         {
+            get
+            {
+               if( bmpDetailed == null )
+               {
+                  bmpDetailed = new BitmapImage();
+                  LoadThumbnailDetailed();
+               }
+
+               return bmpDetailed;
+            }
+         }
+
          public StorageFileWrapper( StorageFile file )
          {
             m_file = file;
@@ -86,6 +101,11 @@ namespace TakeHomeExercise.DataProviders
          public async void LoadThumbnail()
          {
             bmp.SetSource( await m_file.OpenAsync( FileAccessMode.Read ) );
+         }
+
+         public async void LoadThumbnailDetailed()
+         {
+            bmpDetailed.SetSource( await m_file.OpenAsync( FileAccessMode.Read ) );
          }
       }
    }

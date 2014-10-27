@@ -46,6 +46,6 @@
             <TextBlock x:Name="pageTitle" Text="{Binding Converter={StaticResource photoTitleConverter}}" Style="{StaticResource HeaderTextBlockStyle}" Grid.Column="1" 
                         IsHitTestVisible="false" TextWrapping="NoWrap" VerticalAlignment="Bottom" Margin="0,0,30,40"/>
         </Grid>
-        <Image Grid.Row="1" Stretch="Uniform" Source="{Binding Converter={StaticResource photoConverter}}"></Image>
+        <Image Grid.Row="1" Stretch="Uniform" Source="{Binding Converter={StaticResource photoConverter},ConverterParameter=true}"></Image>
     </Grid>
 </Page>
